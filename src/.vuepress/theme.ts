@@ -8,24 +8,17 @@ export default hopeTheme({
         name: "我小叮当、",
         url: "https://nikolazhang.github.io",
     },
-    icon: {
-        asserts: [
-            "https://at.alicdn.com/t/c/font_4414155_jke57xnocdp.css",
-            "iconfont"
-        ],
-        prefix: "iconfont icon-",
-    },
     logo: "/head.svg",
     repo: "https://github.com/NikolaZhang/nikolazhang.github.io",
     docsDir: "docs",
-    pageInfo: ["Date", "Category", "Tag", "ReadingTime"],
+    pageInfo: ["Date", "Tag", "ReadingTime"],
     blog: {
         name: "我小叮当、",
         avatar: "/head.svg",
         description: "全人类的幻想乡",
         timeline: "朝花夕拾",
         articlePerPage: 10,
-        articleInfo: ["Date", "Category", "Tag", "ReadingTime"],
+        articleInfo: ["Date", "Tag", "ReadingTime"],
         intro: "/",
         medias: {
             Email: "mailto:nikolazhang@163.com",
@@ -51,6 +44,17 @@ export default hopeTheme({
             "/demo/encrypt.html": ["nikola"],
             "/zh/demo/encrypt.html": ["nikola"],
         },
+    },
+    markdown: {
+        linkify: true,
+        figure: true,
+        imgLazyload: true,
+        chartjs: true,
+        echarts: true,
+        flowchart: true,
+        markmap: true,
+        mermaid: true,
+        plantuml: true,
     },
     plugins: {
         blog: {
@@ -78,7 +82,6 @@ export default hopeTheme({
                 '//unpkg.com/@waline/emojis@1.1.0/tw-emoji',
                 '//unpkg.com/@waline/emojis@1.1.0/weibo',
             ],
-
         },
     },
 });
