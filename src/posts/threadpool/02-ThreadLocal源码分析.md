@@ -248,228 +248,7 @@ private static int nextHashCode() {
 
 ### 2.4 ThreadLocalMap的核心方法
 
-ThreadLocalMap是ThreadLocal实现的核心，下面详细分析其关键方法的实现细节：
-
-#### 2.4.1 getEntry()方法
-
-```java
-private Entry getEntry(ThreadLocal<?> key) {
-    // 计算哈希值，使用与运算替代取模运算提高性能
-    int i = key.threadLocalHashCode & (table.length - 1);
-    // 获取对应的Entry
-    Entry e = table[i];
-    // 如果Entry存在且key匹配，直接返回Entry
-    if (e != null && e.get() == key) {
-        return e;
-    } else {
-        // 处理哈希冲突或key已被回收的情况
-        return getEntryAfterMiss(key, i, e);
-    }
-}
-```
-
-**getEntryAfterMiss()方法**用于处理在第一次查找失败后的情况，它会继续线性探测，同时清理遇到的过期Entry：
-
-```java
-private Entry getEntryAfterMiss(ThreadLocal<?> key, int i, Entry e) {
-    Entry[] tab = table;
-    int len = tab.length;
-
-    while (e != null) {
-        ThreadLocal<?> k = e.get();
-        // 找到匹配的key
-        if (k == key) {
-            return e;
-        }
-        // 清理过期Entry
-        if (k == null) {
-            expungeStaleEntry(i);
-        } else {
-            i = nextIndex(i, len);
-        }
-        e = tab[i];
-    }
-    return null;
-}
-```
-
-#### 2.4.2 set()方法
-
-```java
-private void set(ThreadLocal<?> key, Object value) {
-    Entry[] tab = table;
-    int len = tab.length;
-    // 计算哈希值
-    int i = key.threadLocalHashCode & (len-1);
-    
-    // 线性探测查找合适的位置
-    for (Entry e = tab[i]; e != null; e = tab[i = nextIndex(i, len)]) {
-        ThreadLocal<?> k = e.get();
-        
-        // 如果key匹配，更新value并返回
-        if (k == key) {
-            e.value = value;
-            return;
-        }
-        
-        // 如果key为null（说明ThreadLocal对象已被回收），替换旧的Entry
-        if (k == null) {
-            replaceStaleEntry(key, value, i);
-            return;
-        }
-    }
-    
-    // 如果没有找到对应的Entry，创建一个新的Entry
-    tab[i] = new Entry(key, value);
-    int sz = ++size;
-    
-    // 清理过期的Entry，如果清理后size仍超过阈值则进行扩容
-    if (!cleanSomeSlots(i, sz) && sz >= threshold) {
-        rehash();
-    }
-}
-```
-
-**replaceStaleEntry()方法**是ThreadLocalMap中一个重要的优化方法，它在设置新值的同时会清理过期Entry：
-
-```java
-private void replaceStaleEntry(ThreadLocal<?> key, Object value, int staleSlot) {
-    Entry[] tab = table;
-    int len = tab.length;
-    Entry e;
-
-    // 向前扫描寻找过期的Entry
-    int slotToExpunge = staleSlot;
-    for (int i = prevIndex(staleSlot, len); 
-         (e = tab[i]) != null; 
-         i = prevIndex(i, len)) {
-        if (e.get() == null) {
-            slotToExpunge = i;
-        }
-    }
-
-    // 向后扫描寻找key或更多过期Entry
-    for (int i = nextIndex(staleSlot, len);
-         (e = tab[i]) != null;
-         i = nextIndex(i, len)) {
-        ThreadLocal<?> k = e.get();
-
-        // 如果找到key，将其移到staleSlot位置
-        if (k == key) {
-            e.value = value;
-            tab[i] = tab[staleSlot];
-            tab[staleSlot] = e;
-
-            // 清理过期Entry
-            if (slotToExpunge == staleSlot) {
-                slotToExpunge = i;
-            }
-            cleanSomeSlots(expungeStaleEntry(slotToExpunge), len);
-            return;
-        }
-
-        // 如果找到另一个过期Entry且之前没找到
-        if (k == null && slotToExpunge == staleSlot) {
-            slotToExpunge = i;
-        }
-    }
-
-    // 如果没找到key，在staleSlot位置放置新Entry
-    tab[staleSlot].value = null;
-    tab[staleSlot] = new Entry(key, value);
-
-    // 清理过期Entry
-    if (slotToExpunge != staleSlot) {
-        cleanSomeSlots(expungeStaleEntry(slotToExpunge), len);
-    }
-}
-```
-
-#### 2.4.3 remove()方法
-
-```java
-private void remove(ThreadLocal<?> key) {
-    Entry[] tab = table;
-    int len = tab.length;
-    // 计算哈希值
-    int i = key.threadLocalHashCode & (len-1);
-    
-    // 线性探测查找对应的Entry
-    for (Entry e = tab[i]; e != null; e = tab[i = nextIndex(i, len)]) {
-        if (e.get() == key) {
-            // 清除Entry的弱引用
-            e.clear();
-            // 清理过期的Entry和该位置后的相关条目
-            expungeStaleEntry(i);
-            return;
-        }
-    }
-}
-```
-
-#### 2.4.4 辅助方法
-
-**expungeStaleEntry()方法**是ThreadLocalMap中核心的清理方法，它会清理指定位置及之后的过期Entry，并对表进行重新哈希：
-
-```java
-private int expungeStaleEntry(int staleSlot) {
-    Entry[] tab = table;
-    int len = tab.length;
-
-    // 清除该位置的值引用
-    tab[staleSlot].value = null;
-    tab[staleSlot] = null;
-    size--;
-
-    // 重新哈希后面的Entry，直到遇到null
-    Entry e;
-    int i;
-    for (i = nextIndex(staleSlot, len);
-         (e = tab[i]) != null;
-         i = nextIndex(i, len)) {
-        ThreadLocal<?> k = e.get();
-        // 如果key为null，清理该Entry
-        if (k == null) {
-            e.value = null;
-            tab[i] = null;
-            size--;
-        } else {
-            // 重新计算哈希位置
-            int h = k.threadLocalHashCode & (len - 1);
-            // 如果位置发生变化，需要移动Entry
-            if (h != i) {
-                tab[i] = null;
-                // 线性探测找到新位置
-                while (tab[h] != null) {
-                    h = nextIndex(h, len);
-                }
-                tab[h] = e;
-            }
-        }
-    }
-    return i;
-}
-```
-
-**cleanSomeSlots()方法**是一种启发式清理机制，用于清理表中的部分过期Entry：
-
-```java
-private boolean cleanSomeSlots(int i, int n) {
-    boolean removed = false;
-    Entry[] tab = table;
-    int len = tab.length;
-    do {
-        i = nextIndex(i, len);
-        Entry e = tab[i];
-        // 如果发现过期Entry，调用expungeStaleEntry进行清理
-        if (e != null && e.get() == null) {
-            n = len; // 重置搜索范围
-            removed = true;
-            i = expungeStaleEntry(i);
-        }
-    } while ( (n >>>= 1) != 0 ); // 右移相当于除以2，搜索log2(n)个位置
-    return removed;
-}
+ThreadLocalMap是ThreadLocal实现的核心，其关键方法实现细节将在第3节"ThreadLocalMap深度源码分析"中进行详细阐述。
 ```
 
 ### 2.5 ThreadLocal的工作原理图解
@@ -579,77 +358,6 @@ InheritableThreadLocal的工作原理与ThreadLocal基本相同，但它使用Th
 2. 在线程池中使用时需要特别小心，因为线程会被复用，可能导致数据混乱
 3. 复制是浅拷贝，如果值对象是可变的，父线程和子线程修改该对象会相互影响
 
-## 3. ThreadLocal使用案例
-
-### 3.1 基本使用案例
-
-```java
-public class ThreadLocalDemo {
-    // 创建ThreadLocal对象
-    private static ThreadLocal<Integer> threadLocal = new ThreadLocal<Integer>() {
-        @Override
-        protected Integer initialValue() {
-            // 设置初始值
-            return 0;
-        }
-    };
-    
-    public static void main(String[] args) {
-        // 创建两个线程
-        Thread thread1 = new Thread(() -> {
-            try {
-                // 获取初始值
-                System.out.println("Thread1 initial value: " + threadLocal.get());
-                // 设置值
-                threadLocal.set(100);
-                // 获取设置后的值
-                System.out.println("Thread1 after set: " + threadLocal.get());
-            } finally {
-                // 移除值，避免内存泄漏
-                threadLocal.remove();
-            }
-        });
-        
-        Thread thread2 = new Thread(() -> {
-            try {
-                // 获取初始值
-                System.out.println("Thread2 initial value: " + threadLocal.get());
-                // 设置值
-                threadLocal.set(200);
-                // 获取设置后的值
-                System.out.println("Thread2 after set: " + threadLocal.get());
-            } finally {
-                // 移除值，避免内存泄漏
-                threadLocal.remove();
-            }
-        });
-        
-        // 启动线程
-        thread1.start();
-        thread2.start();
-    }
-}
-```
-
-### 3.2 实际应用案例：Spring中的ThreadLocal
-
-在Spring框架中，ThreadLocal被广泛应用于事务管理、安全认证等场景。例如，Spring的`TransactionSynchronizationManager`类使用ThreadLocal来存储当前线程的事务信息：
-
-```java
-public abstract class TransactionSynchronizationManager {
-    private static final ThreadLocal<Map<Object, Object>> resources = 
-        new NamedThreadLocal<>("Transactional resources");
-    
-    private static final ThreadLocal<Set<TransactionSynchronization>> synchronizations = 
-        new NamedThreadLocal<>("Transaction synchronizations");
-    
-    private static final ThreadLocal<String> currentTransactionName = 
-        new NamedThreadLocal<>("Current transaction name");
-    
-    // 其他代码...
-}
-```
-
 ## 3. ThreadLocalMap深度源码分析
 
 ThreadLocalMap是ThreadLocal的核心实现，它作为Thread类的成员变量存储线程本地变量。本节将深入分析ThreadLocalMap的源码实现和优化策略。
@@ -754,7 +462,231 @@ private static int prevIndex(int i, int len) {
 
 这种简单的线性探测策略在ThreadLocal使用场景下通常足够高效，因为大多数情况下ThreadLocal变量数量较少，冲突概率低。
 
-### 3.4 扩容机制
+### 3.4 核心方法详解
+
+#### 3.4.1 getEntry()方法
+
+```java
+private Entry getEntry(ThreadLocal<?> key) {
+    // 计算哈希值，使用与运算替代取模运算提高性能
+    int i = key.threadLocalHashCode & (table.length - 1);
+    // 获取对应的Entry
+    Entry e = table[i];
+    // 如果Entry存在且key匹配，直接返回Entry
+    if (e != null && e.get() == key) {
+        return e;
+    } else {
+        // 处理哈希冲突或key已被回收的情况
+        return getEntryAfterMiss(key, i, e);
+    }
+}
+```
+
+**getEntryAfterMiss()方法**用于处理在第一次查找失败后的情况，它会继续线性探测，同时清理遇到的过期Entry：
+
+```java
+private Entry getEntryAfterMiss(ThreadLocal<?> key, int i, Entry e) {
+    Entry[] tab = table;
+    int len = tab.length;
+
+    while (e != null) {
+        ThreadLocal<?> k = e.get();
+        // 找到匹配的key
+        if (k == key) {
+            return e;
+        }
+        // 清理过期Entry
+        if (k == null) {
+            expungeStaleEntry(i);
+        } else {
+            i = nextIndex(i, len);
+        }
+        e = tab[i];
+    }
+    return null;
+}
+```
+
+#### 3.4.2 set()方法
+
+```java
+private void set(ThreadLocal<?> key, Object value) {
+    Entry[] tab = table;
+    int len = tab.length;
+    // 计算哈希值
+    int i = key.threadLocalHashCode & (len-1);
+    
+    // 线性探测查找合适的位置
+    for (Entry e = tab[i]; e != null; e = tab[i = nextIndex(i, len)]) {
+        ThreadLocal<?> k = e.get();
+        
+        // 如果key匹配，更新value并返回
+        if (k == key) {
+            e.value = value;
+            return;
+        }
+        
+        // 如果key为null（说明ThreadLocal对象已被回收），替换旧的Entry
+        if (k == null) {
+            replaceStaleEntry(key, value, i);
+            return;
+        }
+    }
+    
+    // 如果没有找到对应的Entry，创建一个新的Entry
+    tab[i] = new Entry(key, value);
+    int sz = ++size;
+    
+    // 清理过期的Entry，如果清理后size仍超过阈值则进行扩容
+    if (!cleanSomeSlots(i, sz) && sz >= threshold) {
+        rehash();
+    }
+}
+```
+
+**replaceStaleEntry()方法**是ThreadLocalMap中一个重要的优化方法，它在设置新值的同时会清理过期Entry：
+
+```java
+private void replaceStaleEntry(ThreadLocal<?> key, Object value, int staleSlot) {
+    Entry[] tab = table;
+    int len = tab.length;
+    Entry e;
+
+    // 向前扫描寻找过期的Entry
+    int slotToExpunge = staleSlot;
+    for (int i = prevIndex(staleSlot, len); 
+         (e = tab[i]) != null; 
+         i = prevIndex(i, len)) {
+        if (e.get() == null) {
+            slotToExpunge = i;
+        }
+    }
+
+    // 向后扫描寻找key或更多过期Entry
+    for (int i = nextIndex(staleSlot, len);
+         (e = tab[i]) != null;
+         i = nextIndex(i, len)) {
+        ThreadLocal<?> k = e.get();
+
+        // 如果找到key，将其移到staleSlot位置
+        if (k == key) {
+            e.value = value;
+            tab[i] = tab[staleSlot];
+            tab[staleSlot] = e;
+
+            // 清理过期Entry
+            if (slotToExpunge == staleSlot) {
+                slotToExpunge = i;
+            }
+            cleanSomeSlots(expungeStaleEntry(slotToExpunge), len);
+            return;
+        }
+
+        // 如果找到另一个过期Entry且之前没找到
+        if (k == null && slotToExpunge == staleSlot) {
+            slotToExpunge = i;
+        }
+    }
+
+    // 如果没找到key，在staleSlot位置放置新Entry
+    tab[staleSlot].value = null;
+    tab[staleSlot] = new Entry(key, value);
+
+    // 清理过期Entry
+    if (slotToExpunge != staleSlot) {
+        cleanSomeSlots(expungeStaleEntry(slotToExpunge), len);
+    }
+}
+```
+
+#### 3.4.3 remove()方法
+
+```java
+private void remove(ThreadLocal<?> key) {
+    Entry[] tab = table;
+    int len = tab.length;
+    // 计算哈希值
+    int i = key.threadLocalHashCode & (len-1);
+    
+    // 线性探测查找对应的Entry
+    for (Entry e = tab[i]; e != null; e = tab[i = nextIndex(i, len)]) {
+        if (e.get() == key) {
+            // 清除Entry的弱引用
+            e.clear();
+            // 清理过期的Entry和该位置后的相关条目
+            expungeStaleEntry(i);
+            return;
+        }
+    }
+}
+```
+
+#### 3.4.4 内存泄漏清理机制
+
+**expungeStaleEntry()方法**是ThreadLocalMap中核心的清理方法，它会清理指定位置及之后的过期Entry，并对表进行重新哈希：
+
+```java
+private int expungeStaleEntry(int staleSlot) {
+    Entry[] tab = table;
+    int len = tab.length;
+
+    // 清除该位置的值引用
+    tab[staleSlot].value = null;
+    tab[staleSlot] = null;
+    size--;
+
+    // 重新哈希后面的Entry，直到遇到null
+    Entry e;
+    int i;
+    for (i = nextIndex(staleSlot, len);
+         (e = tab[i]) != null;
+         i = nextIndex(i, len)) {
+        ThreadLocal<?> k = e.get();
+        // 如果key为null，清理该Entry
+        if (k == null) {
+            e.value = null;
+            tab[i] = null;
+            size--;
+        } else {
+            // 重新计算哈希位置
+            int h = k.threadLocalHashCode & (len - 1);
+            // 如果位置发生变化，需要移动Entry
+            if (h != i) {
+                tab[i] = null;
+                // 线性探测找到新位置
+                while (tab[h] != null) {
+                    h = nextIndex(h, len);
+                }
+                tab[h] = e;
+            }
+        }
+    }
+    return i;
+}
+```
+
+**cleanSomeSlots()方法**是一种启发式清理机制，用于清理表中的部分过期Entry：
+
+```java
+private boolean cleanSomeSlots(int i, int n) {
+    boolean removed = false;
+    Entry[] tab = table;
+    int len = tab.length;
+    do {
+        i = nextIndex(i, len);
+        Entry e = tab[i];
+        // 如果发现过期Entry，调用expungeStaleEntry进行清理
+        if (e != null && e.get() == null) {
+            n = len; // 重置搜索范围
+            removed = true;
+            i = expungeStaleEntry(i);
+        }
+    } while ( (n >>>= 1) != 0 ); // 右移相当于除以2，搜索log2(n)个位置
+    return removed;
+}
+```
+
+### 3.5 扩容机制
 
 ThreadLocalMap的扩容机制与HashMap有明显区别，主要体现在：
 
@@ -798,112 +730,6 @@ private void resize() {
 }
 ```
 
-### 3.5 内存泄漏自动清理机制
-
-ThreadLocalMap实现了几种自动清理机制，用于减少内存泄漏的风险：
-
-#### 3.5.1 懒清理机制
-
-在`get()`、`set()`和`remove()`方法中，会自动检查并清理过期的Entry：
-
-```java
-private Entry getEntry(ThreadLocal<?> key) {
-    int i = key.threadLocalHashCode & (table.length - 1);
-    Entry e = table[i];
-    if (e != null && e.get() == key) {
-        return e; // 直接命中
-    } else {
-        return getEntryAfterMiss(key, i, e); // 未命中，可能需要清理
-    }
-}
-
-private Entry getEntryAfterMiss(ThreadLocal<?> key, int i, Entry e) {
-    Entry[] tab = table;
-    int len = tab.length;
-
-    while (e != null) {
-        ThreadLocal<?> k = e.get();
-        if (k == key) {
-            return e; // 找到匹配的Entry
-        }
-        if (k == null) {
-            expungeStaleEntry(i); // 清理过期的Entry
-        } else {
-            i = nextIndex(i, len);
-        }
-        e = tab[i];
-    }
-    return null;
-}
-```
-
-#### 3.5.2 批量清理机制
-
-`cleanSomeSlots()`方法实现了批量清理策略，可以在一个操作中清理多个过期的Entry：
-
-```java
-private boolean cleanSomeSlots(int i, int n) {
-    boolean removed = false;
-    Entry[] tab = table;
-    int len = tab.length;
-    do {
-        i = nextIndex(i, len);
-        Entry e = tab[i];
-        if (e != null && e.get() == null) {
-            n = len; // 重置清理计数，增加清理范围
-            removed = true;
-            i = expungeStaleEntry(i); // 清理这个位置及后续位置的过期Entry
-        }
-    } while ( (n >>>= 1) != 0 ); // 右移n，直到n为0
-    return removed;
-}
-```
-
-这种清理策略是概率性的，尝试清理大约log2(n)个Entry，在性能和清理效果之间取得平衡。
-
-#### 3.5.3 完全清理机制
-
-当需要调整表大小或替换过期条目时，会调用`expungeStaleEntry()`方法，该方法会清理从指定位置开始的所有过期Entry，并重新排列条目以消除哈希冲突留下的空洞：
-
-```java
-private int expungeStaleEntry(int staleSlot) {
-    Entry[] tab = table;
-    int len = tab.length;
-
-    // 清理当前位置的过期条目
-    tab[staleSlot].value = null;
-    tab[staleSlot] = null;
-    size--;
-
-    // 重新哈希后续条目，直到遇到null
-    Entry e;
-    int i;
-    for (i = nextIndex(staleSlot, len);
-         (e = tab[i]) != null;
-         i = nextIndex(i, len)) {
-        ThreadLocal<?> k = e.get();
-        if (k == null) {
-            // 清理更多过期条目
-            e.value = null;
-            tab[i] = null;
-            size--;
-        } else {
-            // 重新计算索引，消除哈希冲突留下的空洞
-            int h = k.threadLocalHashCode & (len - 1);
-            if (h != i) {
-                tab[i] = null;
-                // 线性探测找新位置
-                while (tab[h] != null) {
-                    h = nextIndex(h, len);
-                }
-                tab[h] = e;
-            }
-        }
-    }
-    return i;
-}
-```
-
 ### 3.6 性能优化策略
 
 ThreadLocalMap实现了多项性能优化策略：
@@ -940,6 +766,77 @@ ThreadLocalMap实现了多项性能优化策略：
 4. **避免存储大对象**：大对象会占用更多内存，且在扩容时需要更多的复制操作
 
 5. **考虑使用静态ThreadLocal**：静态ThreadLocal实例生命周期长，减少创建和初始化的开销
+```
+
+## 4. ThreadLocal使用案例
+
+### 4.1 基本使用案例
+
+```java
+public class ThreadLocalDemo {
+    // 创建ThreadLocal对象
+    private static ThreadLocal<Integer> threadLocal = new ThreadLocal<Integer>() {
+        @Override
+        protected Integer initialValue() {
+            // 设置初始值
+            return 0;
+        }
+    };
+    
+    public static void main(String[] args) {
+        // 创建两个线程
+        Thread thread1 = new Thread(() -> {
+            try {
+                // 获取初始值
+                System.out.println("Thread1 initial value: " + threadLocal.get());
+                // 设置值
+                threadLocal.set(100);
+                // 获取设置后的值
+                System.out.println("Thread1 after set: " + threadLocal.get());
+            } finally {
+                // 移除值，避免内存泄漏
+                threadLocal.remove();
+            }
+        });
+        
+        Thread thread2 = new Thread(() -> {
+            try {
+                // 获取初始值
+                System.out.println("Thread2 initial value: " + threadLocal.get());
+                // 设置值
+                threadLocal.set(200);
+                // 获取设置后的值
+                System.out.println("Thread2 after set: " + threadLocal.get());
+            } finally {
+                // 移除值，避免内存泄漏
+                threadLocal.remove();
+            }
+        });
+        
+        // 启动线程
+        thread1.start();
+        thread2.start();
+    }
+}
+```
+
+### 4.2 实际应用案例：Spring中的ThreadLocal
+
+在Spring框架中，ThreadLocal被广泛应用于事务管理、安全认证等场景。例如，Spring的`TransactionSynchronizationManager`类使用ThreadLocal来存储当前线程的事务信息：
+
+```java
+public abstract class TransactionSynchronizationManager {
+    private static final ThreadLocal<Map<Object, Object>> resources = 
+        new NamedThreadLocal<>("Transactional resources");
+    
+    private static final ThreadLocal<Set<TransactionSynchronization>> synchronizations = 
+        new NamedThreadLocal<>("Transaction synchronizations");
+    
+    private static final ThreadLocal<String> currentTransactionName = 
+        new NamedThreadLocal<>("Current transaction name");
+    
+    // 其他代码...
+}
 
 ## 4. ThreadLocal在实际框架中的应用案例
 
@@ -1043,7 +940,7 @@ MyBatis使用ThreadLocal来管理数据库会话和事务：
 
 ### 5.1 内存泄漏问题
 
-#### 4.1.1 内存泄漏的根本原因
+#### 5.1.1 内存泄漏的根本原因
 
 ThreadLocal内存泄漏是最常见且危害较大的问题，其根本原因需要从引用关系和对象生命周期来分析：
 
@@ -1064,14 +961,14 @@ ThreadLocal内存泄漏是最常见且危害较大的问题，其根本原因需
    - 但这种设计并不能解决Value对象的内存泄漏问题
    - JDK设计者假设ThreadLocal对象通常是静态的或生命周期较长的，而线程最终会终止，从而释放整个ThreadLocalMap
 
-#### 4.1.2 内存泄漏的影响和风险
+#### 5.1.2 内存泄漏的影响和风险
 
 1. **内存占用增加**：随着时间推移，未清理的ThreadLocal值会不断累积
 2. **垃圾回收压力增大**：频繁创建大对象而不释放会增加GC负担
 3. **潜在的OutOfMemoryError**：在极端情况下可能导致内存溢出
 4. **线程池环境风险更高**：因为线程被复用且长期存活，内存泄漏会持续累积
 
-#### 4.1.3 解决方案
+#### 5.1.3 解决方案
 
 为了彻底避免ThreadLocal内存泄漏，我们应该采取以下措施：
 
@@ -1107,7 +1004,7 @@ ThreadLocal内存泄漏是最常见且危害较大的问题，其根本原因需
    - 定期检查内存使用情况
    - 使用JVM内存分析工具（如JProfiler、MAT）检测潜在的内存泄漏
 
-### 4.1.4 ThreadLocal内存泄漏的检测方法
+#### 5.1.4 ThreadLocal内存泄漏的检测方法
 
 1. **使用JVM参数**：
    ```
@@ -1220,28 +1117,14 @@ ThreadLocal内存泄漏是最常见且危害较大的问题，其根本原因需
 
 ### 6.3 常见陷阱和规避方法
 
-1. **线程池环境中的数据污染**：
-   - **问题**：线程被复用时，ThreadLocal中的数据没有清理
-   - **解决方案**：
-     - 始终在任务结束时调用`remove()`
-     - 使用AOP拦截器自动清理ThreadLocal
-     - 考虑使用线程池任务包装器
-
-2. **线程泄漏导致的ThreadLocal累积**：
-   - **问题**：未正确关闭的线程池会导致ThreadLocal一直存在
-   - **解决方案**：
-     - 确保使用完毕后关闭线程池
-     - 设置合适的keepAliveTime
-     - 考虑使用有界队列防止无限增长
-
-3. **InheritableThreadLocal的风险**：
+1. **InheritableThreadLocal的风险**：
    - **问题**：子线程继承父线程的值可能导致意外的数据共享
    - **解决方案**：
      - 谨慎使用InheritableThreadLocal
      - 确保在子线程中根据需要重置或清理继承的值
      - 注意线程池环境中使用时的特殊处理
 
-4. **可变对象的并发修改**：
+2. **可变对象的并发修改**：
    - **问题**：ThreadLocal中存储的可变对象可能被错误共享
    - **解决方案**：
      - 存储不可变对象或创建深拷贝
