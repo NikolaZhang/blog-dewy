@@ -39,6 +39,8 @@ ThreadLocal的工作原理可以概括为以下几点：
 5. `ThreadLocal`对象本身作为`ThreadLocalMap`的key，而变量值作为value
 6. ThreadLocal采用了弱引用设计来避免内存泄漏问题，但这种设计仍需要开发者正确使用才能完全避免内存泄漏
 
+![ThreadLocal工作原理](http://dewy-blog.nikolazh.eu.org/2020-04-12-20-54-49.png)
+
 ## 2. ThreadLocal核心源码分析
 
 ### 2.1 ThreadLocal类的结构
@@ -766,7 +768,6 @@ ThreadLocalMap实现了多项性能优化策略：
 4. **避免存储大对象**：大对象会占用更多内存，且在扩容时需要更多的复制操作
 
 5. **考虑使用静态ThreadLocal**：静态ThreadLocal实例生命周期长，减少创建和初始化的开销
-```
 
 ## 4. ThreadLocal使用案例
 
