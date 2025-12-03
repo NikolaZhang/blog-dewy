@@ -61,8 +61,8 @@ export default hopeTheme({
             excerpt: false
         },
         docsearch: {
-            appId: 'YIS8DY4LNY',
-            apiKey: 'b008387bae095c0a5dc485d0a3e62b67',
+            appId: 'DT4A7MCZUJ',
+            apiKey: '76028292f26cbfa2c3f547d465359542',
             indexName: ''
         },
         // If you don't need comment feature, you can remove following option
