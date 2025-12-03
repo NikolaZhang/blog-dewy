@@ -17,7 +17,7 @@ export default hopeTheme({
         avatar: "/head.svg",
         description: "全人类的幻想乡",
         timeline: "朝花夕拾",
-        articlePerPage: 10,
+        articlePerPage: 20,
         articleInfo: ["Date", "Tag", "ReadingTime"],
         intro: "/",
         medias: {
@@ -63,7 +63,7 @@ export default hopeTheme({
         docsearch: {
             appId: 'DT4A7MCZUJ',
             apiKey: '76028292f26cbfa2c3f547d465359542',
-            indexName: ''
+            indexName: 'nikolazhang_github_io_dt4a7mczuj_articles'
         },
         // If you don't need comment feature, you can remove following option
         // The following config is for demo ONLY, if you need comment feature, please generate and use your own config, see comment plugin documentation for details.
