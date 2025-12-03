@@ -326,7 +326,7 @@ ThreadLocal只有一个无参构造方法:
 首先调用`expungeStaleEntries`清理所有失活节点. 可以看到这个方法的逻辑是: 遍历数组找到失活的节点后, 调用`expungeStaleEntry`进行处理.
 
 如果数组长度超出阈值0.75则进行扩容. 0.75的值取的时候是获取上限. 可以参考下图:
-![2020-04-13-23-12-51](https://tech.nikolazhang.top/2020-04-13-23-12-51.png)
+![2020-04-13-23-12-51](http://dewy-blog.nikolazh.eu.org/2020-04-13-23-12-51.png)
 
 扩容逻辑见下:
 
@@ -536,7 +536,7 @@ ThreadLocal只有一个无参构造方法:
 
 最后两张图描述一下Thread, ThreadLocal, ThreadLocalMap, Entry的关系, 以及数据的存取方式
 
-![2020-04-12-17-55-03](https://tech.nikolazhang.top/2020-04-12-17-55-03.png)
+![2020-04-12-17-55-03](http://dewy-blog.nikolazh.eu.org/2020-04-12-17-55-03.png)
 
 从类的结构上来说:
 ThreadLocalMap是Thread的成员变量, 是ThreadLocal的内部类.
@@ -554,7 +554,7 @@ ThreadLocalMap中维护了Entry[];
 自然我们获取的时候每个线程从各自的ThreadLocalMap中获取Entry中value的结果自然是不同的.
 
 你可以参考下图进行理解上面的话.
-![2020-04-12-20-54-49](https://tech.nikolazhang.top/2020-04-12-20-54-49.png)
+![2020-04-12-20-54-49](http://dewy-blog.nikolazh.eu.org/2020-04-12-20-54-49.png)
 
 说实话, 线程安全这种东西本身就不是容易去理解. 如果有什么不对的地方或者有更好的理解, 欢迎各位大佬留言分享.
 

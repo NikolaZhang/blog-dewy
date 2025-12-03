@@ -137,7 +137,7 @@ private ConfigurableEnvironment getOrCreateEnvironment() {
 
 目前最常见的就是`SERVLET`类型. 以此为例. 其需要创建一个`StandardServletEnvironment`类型对象.
 该类的继承关系见下:
-![2020-05-07-22-17-45](https://tech.nikolazhang.top/2020-05-07-22-17-45.png)
+![2020-05-07-22-17-45](http://dewy-blog.nikolazh.eu.org/2020-05-07-22-17-45.png)
 
 上面的代码逻辑只是调用了该类默认的构造方法, 具体之后要做什么尚未可知, 不过根据该类继承的关系来看, 至少是要设置诸如: `servletContextInitParams`, `servletConfigInitParams`, `jndiProperties`, `systemEnvironment`等等的属性. 当然这个类只是提供了这种环境应该要设置哪些参数, 最终的参数类型和参数值还是要通过`PropertySource`存放的. 这段描述还有待验证(TODO).
 

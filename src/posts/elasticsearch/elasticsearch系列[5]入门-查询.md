@@ -22,14 +22,14 @@ star: false
   GET /megacorp/employee/1
   ```
 
-  ![2020-02-01-13-45-39](https://tech.nikolazhang.top/2020-02-01-13-45-39.png)
+  ![2020-02-01-13-45-39](http://dewy-blog.nikolazh.eu.org/2020-02-01-13-45-39.png)
 2. 搜索全部
 
   ```json
   GET /megacorp/employee/_search
   ```
 
-  ![2020-02-01-13-49-44](https://tech.nikolazhang.top/2020-02-01-13-49-44.png)
+  ![2020-02-01-13-49-44](http://dewy-blog.nikolazh.eu.org/2020-02-01-13-49-44.png)
 
   响应内容的hits数组中包含了我们所有的三个文档。默认情况下搜索会返回前10个结果。
 3. 根据字段值查询
@@ -39,7 +39,7 @@ star: false
   GET /megacorp/employee/_search?q=last_name:Smith
   ```
 
-  ![2020-02-01-13-53-46](https://tech.nikolazhang.top/2020-02-01-13-53-46.png)
+  ![2020-02-01-13-53-46](http://dewy-blog.nikolazh.eu.org/2020-02-01-13-53-46.png)
 
   可以看到出现了两个匹配结果
 4. 查询部分字段
@@ -48,13 +48,13 @@ star: false
   GET /megacorp/employee/1?_source=first_name,last_name
   ```
 
-  ![2020-02-01-20-02-12](https://tech.nikolazhang.top/2020-02-01-20-02-12.png)
+  ![2020-02-01-20-02-12](http://dewy-blog.nikolazh.eu.org/2020-02-01-20-02-12.png)
 
   ```json
   GET /megacorp/employee/1/_source
   ```
 
-  ![2020-02-01-16-57-09](https://tech.nikolazhang.top/2020-02-01-16-57-09.png)
+  ![2020-02-01-16-57-09](http://dewy-blog.nikolazh.eu.org/2020-02-01-16-57-09.png)
 5. 判断文档是否存在,而不关心内容
   将GET方法换成HEAD即可, 响应状态为200则存在, 404不存在
 
@@ -127,7 +127,7 @@ GET /megacorp/employee/_search
 }
 ```
 
-![2020-02-01-14-32-03](https://tech.nikolazhang.top/2020-02-01-14-32-03.png)
+![2020-02-01-14-32-03](http://dewy-blog.nikolazh.eu.org/2020-02-01-14-32-03.png)
 
 `hits`中的`_score`字段表示结果的相关程度.
 
@@ -166,4 +166,4 @@ GET /megacorp/employee/_search
 }
 ```
 
-![2020-02-01-15-13-49](https://tech.nikolazhang.top/2020-02-01-15-13-49.png)
+![2020-02-01-15-13-49](http://dewy-blog.nikolazh.eu.org/2020-02-01-15-13-49.png)

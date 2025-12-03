@@ -223,7 +223,7 @@ protected Integer findOrder(Object obj) {
 ```
 
 举个例子:
-![2020-05-04-14-29-51](https://tech.nikolazhang.top/2020-05-04-14-29-51.png)
+![2020-05-04-14-29-51](http://dewy-blog.nikolazh.eu.org/2020-05-04-14-29-51.png)
 
 如果两个类都实现了PriorityOrdered接口, 则可以直接获取他们的order并比较.
 如果一个类实现了Ordered接口, 并设置了order那么通过`((Ordered) obj).getOrder()`我们就可以去到值.

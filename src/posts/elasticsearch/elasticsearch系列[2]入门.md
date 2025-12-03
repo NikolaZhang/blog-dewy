@@ -60,4 +60,4 @@ C: 丢你老母.
 ## waiting
 
 未完待续....
-![2020-02-02-14-39-29](https://tech.nikolazhang.top/2020-02-02-14-39-29.png)
+![2020-02-02-14-39-29](http://dewy-blog.nikolazh.eu.org/2020-02-02-14-39-29.png)

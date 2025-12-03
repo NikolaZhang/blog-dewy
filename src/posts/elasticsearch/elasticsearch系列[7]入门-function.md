@@ -218,7 +218,7 @@ GET /_search
 
 #### modifier取值
 
-![2020-02-06-09-42-55](https://tech.nikolazhang.top/2020-02-06-09-42-55.png)
+![2020-02-06-09-42-55](http://dewy-blog.nikolazh.eu.org/2020-02-06-09-42-55.png)
 
 field_value_score函数生成的分数必须为非负数，否则将引发错误。如果对 0 和 1 之间的值使用，则对数和 ln 修饰符将生成负值。请务必使用范围筛选器限制字段的值以避免这种情况，或使用 log1p 和 ln1p。另外也要避免对0取对数这种非逻辑操作.
 
@@ -282,7 +282,7 @@ GET /_search
 
 `DECAY_FUNCTION`用来确定使用什么衰减函数, 支持的衰减函数见下:
 
-![2020-02-06-16-51-55](https://tech.nikolazhang.top/2020-02-06-16-51-55.png)
+![2020-02-06-16-51-55](http://dewy-blog.nikolazh.eu.org/2020-02-06-16-51-55.png)
 
 ### 多值字段
 

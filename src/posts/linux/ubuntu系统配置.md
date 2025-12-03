@@ -86,7 +86,7 @@ service ssh start
 ```
 
 ssh-server需要进行配置否则会连接不上
-![2020-01-31-09-09-38](https://tech.nikolazhang.top/2020-01-31-09-09-38.png)
+![2020-01-31-09-09-38](http://dewy-blog.nikolazh.eu.org/2020-01-31-09-09-38.png)
 
 解决方法是:
 
@@ -99,7 +99,7 @@ service ssh restart
 ```
 
 重新连接, 连接成功
-![2020-01-31-09-15-12](https://tech.nikolazhang.top/2020-01-31-09-15-12.png)
+![2020-01-31-09-15-12](http://dewy-blog.nikolazh.eu.org/2020-01-31-09-15-12.png)
 
 ### 使用别名方式登录
 
@@ -133,7 +133,7 @@ apt-get install openjdk-8-jdk
 ```
 
 安装结果
-![2020-01-31-09-29-27](https://tech.nikolazhang.top/2020-01-31-09-29-27.png)
+![2020-01-31-09-29-27](http://dewy-blog.nikolazh.eu.org/2020-01-31-09-29-27.png)
 上面的这个路径需要用来配置java home
 
 ### 配置java home
@@ -251,4 +251,4 @@ npm config get registry
 
 ## 暂时告一段落
 
-![2020-01-31-09-51-09](https://tech.nikolazhang.top/2020-01-31-09-51-09.png)
+![2020-01-31-09-51-09](http://dewy-blog.nikolazh.eu.org/2020-01-31-09-51-09.png)

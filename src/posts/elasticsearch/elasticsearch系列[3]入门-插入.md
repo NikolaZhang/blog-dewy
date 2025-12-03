@@ -39,7 +39,7 @@ PUT /megacorp/employee/1
 body中的json就是一个当前员工信息的文档. 其中的每一个属性即一个字段.
 
 将上面的命令复制, 粘贴到kibana, 执行:
-![2020-02-01-13-24-00](https://tech.nikolazhang.top/2020-02-01-13-24-00.png)
+![2020-02-01-13-24-00](http://dewy-blog.nikolazh.eu.org/2020-02-01-13-24-00.png)
 
 之后插入更多数据.
 
@@ -69,21 +69,21 @@ PUT /megacorp/employee/3
 GET /megacorp/_search
 ```
 
-![2020-02-01-13-27-30](https://tech.nikolazhang.top/2020-02-01-13-27-30.png)
+![2020-02-01-13-27-30](http://dewy-blog.nikolazh.eu.org/2020-02-01-13-27-30.png)
 
 #### why PUT
 
 为什么上面讲的例子插入都是使用PUT而不是POST. 这明显不restful啊.
-![2020-02-02-20-43-38](https://tech.nikolazhang.top/2020-02-02-20-43-38.png)
+![2020-02-02-20-43-38](http://dewy-blog.nikolazh.eu.org/2020-02-02-20-43-38.png)
 
 当我们使用put方法进行请求指定id, 然而在查询之前我们并不知道这个id是不是已经存在了, 如果没有存在则是创建模式(`result`字段值为`created`), 否则为更新(`result`字段值为`updated`). 为了保证为创建模式有以下方法创建:
 
 1. 使用POST方法, 让es自动生成唯一id. 通过下图你可以发现PUT和POST的不同.
-  ![2020-02-01-20-33-47](https://tech.nikolazhang.top/2020-02-01-20-33-47.png)
+  ![2020-02-01-20-33-47](http://dewy-blog.nikolazh.eu.org/2020-02-01-20-33-47.png)
   使用post方式生成的id, 长度为20个字符, URL安全, base64编码, GUID, 分布式系统并行生成时不可能会发生冲突
 
 2. 使用PUT, 通过添加`?op_type=create`或者`_create`来进行控制, 如果已经存在则响应409.
-  ![2020-02-01-20-47-53](https://tech.nikolazhang.top/2020-02-01-20-47-53.png)
+  ![2020-02-01-20-47-53](http://dewy-blog.nikolazh.eu.org/2020-02-01-20-47-53.png)
 
 #### 文档的结构
 
@@ -219,7 +219,7 @@ PUT /ana_index
 
 ```
 
-![2020-02-03-14-42-25](https://tech.nikolazhang.top/2020-02-03-14-42-25.png)
+![2020-02-03-14-42-25](http://dewy-blog.nikolazh.eu.org/2020-02-03-14-42-25.png)
 
 简单解释一下: `text`字段使用默认的分词器`standard`. `text.english`使用`english`分词器, 这种分词器会删除结束词并提取词干.
 
@@ -236,7 +236,7 @@ GET ana_index/_analyze
 }
 ```
 
-![2020-02-03-14-57-29](https://tech.nikolazhang.top/2020-02-03-14-57-29.png)
+![2020-02-03-14-57-29](http://dewy-blog.nikolazh.eu.org/2020-02-03-14-57-29.png)
 
 ```json
 GET ana_index/_analyze
@@ -246,7 +246,7 @@ GET ana_index/_analyze
 }
 ```
 
-![2020-02-03-14-58-07](https://tech.nikolazhang.top/2020-02-03-14-58-07.png)
+![2020-02-03-14-58-07](http://dewy-blog.nikolazh.eu.org/2020-02-03-14-58-07.png)
 
 你可以对比一下两种分词方式的不同, 但这不是重点. 之后有机会我们再继续研究不同的分词器.
 
@@ -269,7 +269,7 @@ PUT /my-index
 }
 ```
 
-![2020-02-03-13-24-43](https://tech.nikolazhang.top/2020-02-03-13-24-43.png)
+![2020-02-03-13-24-43](http://dewy-blog.nikolazh.eu.org/2020-02-03-13-24-43.png)
 
 ### 修改
 
@@ -287,7 +287,7 @@ PUT /my-index/_mapping
 }
 ```
 
-![2020-02-03-13-25-10](https://tech.nikolazhang.top/2020-02-03-13-25-10.png)
+![2020-02-03-13-25-10](http://dewy-blog.nikolazh.eu.org/2020-02-03-13-25-10.png)
 
 我们可以使用上面的方式更改一个已经存在的字段吗? 答案是不能, 因为可能会导致已经建立索引的值无效. `Except for supported mapping parameters, you can’t change the mapping or field type of an existing field. Changing an existing field could invalidate data that’s already indexed.`
 
@@ -301,11 +301,11 @@ PUT /my-index/_mapping
   GET /my-index/_mapping
   ```
 
-  ![2020-02-03-11-46-28](https://tech.nikolazhang.top/2020-02-03-11-46-28.png)
+  ![2020-02-03-11-46-28](http://dewy-blog.nikolazh.eu.org/2020-02-03-11-46-28.png)
 2. 查看映射的某个字段
 
   ```json
   GET /my-index/_mapping/field/name
   ```
 
-  ![2020-02-03-11-45-58](https://tech.nikolazhang.top/2020-02-03-11-45-58.png)
+  ![2020-02-03-11-45-58](http://dewy-blog.nikolazh.eu.org/2020-02-03-11-45-58.png)

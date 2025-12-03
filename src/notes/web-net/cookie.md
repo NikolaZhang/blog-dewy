@@ -68,7 +68,7 @@ Host:cloud.tencent.com
 
 6. 服务器接收到请求以后，从请求头中获得 Cookie 信息，分析 Cookie 数据后向客户端返回响应。
 
-![2020-04-04-19-53-28](https://tech.nikolazhang.top/2020-04-04-19-53-28.png)
+![2020-04-04-19-53-28](http://dewy-blog.nikolazh.eu.org/2020-04-04-19-53-28.png)
 
 如上所述是 Cookie 在客户端和服务器之间进行传递信息的基本过程。
 

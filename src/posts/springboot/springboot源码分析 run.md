@@ -18,7 +18,7 @@ star: false
 
 ## StopWatch
 
-![2020-05-05-14-14-44](https://tech.nikolazhang.top/2020-05-05-14-14-44.png)
+![2020-05-05-14-14-44](http://dewy-blog.nikolazh.eu.org/2020-05-05-14-14-44.png)
 
 StopWatch中维护了一个`List<TaskInfo> taskList`用于记录各个task的name以及执行的时间. 而`StopWatch`相当于这些task的一个汇总信息. 这个类和springboot的关系不是很大, 不感兴趣的话可以跳过。
 

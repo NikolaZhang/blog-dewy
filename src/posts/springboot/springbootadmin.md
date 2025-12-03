@@ -121,11 +121,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 ## 启动
 
 登录界面
-![2020-04-03-01-27-29](https://tech.nikolazhang.top/2020-04-03-01-27-29.png)
+![2020-04-03-01-27-29](http://dewy-blog.nikolazh.eu.org/2020-04-03-01-27-29.png)
 首页(这里可以看到服务的状态)
-![2020-04-03-01-28-07](https://tech.nikolazhang.top/2020-04-03-01-28-07.png)
-![2020-04-03-01-31-42](https://tech.nikolazhang.top/2020-04-03-01-31-42.png)
+![2020-04-03-01-28-07](http://dewy-blog.nikolazh.eu.org/2020-04-03-01-28-07.png)
+![2020-04-03-01-31-42](http://dewy-blog.nikolazh.eu.org/2020-04-03-01-31-42.png)
 你可以进入一个服务查看服务的内存等运行情况
-![2020-04-03-01-29-01](https://tech.nikolazhang.top/2020-04-03-01-29-01.png)
+![2020-04-03-01-29-01](http://dewy-blog.nikolazh.eu.org/2020-04-03-01-29-01.png)
 logging中可以查看当前服务的日志信息. 这个对于分布式的部署方式日志查看帮助极大, loggers中可以配置指定文件或者包下的日志级别. 也就是你可以实时调整日志的级别.
-![2020-04-03-01-29-31](https://tech.nikolazhang.top/2020-04-03-01-29-31.png)
+![2020-04-03-01-29-31](http://dewy-blog.nikolazh.eu.org/2020-04-03-01-29-31.png)

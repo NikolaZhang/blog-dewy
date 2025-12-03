@@ -59,7 +59,7 @@ System.out.println("生成代理对象: " + infoServiceProxy);
 infoServiceProxy.select();
 ```
 
-![2020-06-17-03-40-33](https://tech.nikolazhang.top/2020-06-17-03-40-33.png)
+![2020-06-17-03-40-33](http://dewy-blog.nikolazh.eu.org/2020-06-17-03-40-33.png)
 
 可以看到, cglib如jdk动态代理一样会生成一个代理对象. 之后调用方法, 实际是执行了`MethodInterceptor`中的逻辑, 我们可以看到父类的公共方法也同样走了这样的逻辑, 这个接下来我们会慢慢探究. 这个不是我想要的啊?!
 

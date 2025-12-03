@@ -172,11 +172,11 @@ public void printBanner(Environment environment, Class<?> sourceClass, PrintStre
 3. 系统默认`SpringBootBanner`, banner样式是写在一个String数组中的
 
 对于图片, 在资源目录下添加一个`banner.png`文件, 运行:
-![2020-05-10-14-04-01](https://tech.nikolazhang.top/2020-05-10-14-04-01.png)
+![2020-05-10-14-04-01](http://dewy-blog.nikolazh.eu.org/2020-05-10-14-04-01.png)
 
 另外springboot还提供了图片打印的一些参数控制, 比如长度,宽度,`bitdepth`(值为4, 8, 分别只16色和256色), `pixelmode`(值为block, 默认text, 分别对应方块输出和字符画)
 一通配置之后的打印banner.
-![2020-05-10-14-10-34](https://tech.nikolazhang.top/2020-05-10-14-10-34.png)
+![2020-05-10-14-10-34](http://dewy-blog.nikolazh.eu.org/2020-05-10-14-10-34.png)
 
 那么, 这些参数又是在什么时候生效的呢? 这就要看ImageBanner中重写的`printBanner`
 
@@ -202,4 +202,4 @@ private void printBanner(Environment environment, PrintStream out) throws IOExce
 ```
 
 对于文本,  在资源目录下添加`banner.txt`文件. 运行:
-![2020-05-10-13-52-09](https://tech.nikolazhang.top/2020-05-10-13-52-09.png)
+![2020-05-10-13-52-09](http://dewy-blog.nikolazh.eu.org/2020-05-10-13-52-09.png)

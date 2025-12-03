@@ -42,7 +42,7 @@ star: false
 ```
 
 需要注意springboot和es版本的匹配:
-![2020-02-10-20-31-34](https://tech.nikolazhang.top/2020-02-10-20-31-34.png)
+![2020-02-10-20-31-34](http://dewy-blog.nikolazh.eu.org/2020-02-10-20-31-34.png)
 
 ## 配置es连接
 
@@ -228,4 +228,4 @@ public class BlogController {
 ```
 
 启动之后, 可以通过es head看到我们已经插入的数据:
-![2020-02-10-21-22-14](https://tech.nikolazhang.top/2020-02-10-21-22-14.png)
+![2020-02-10-21-22-14](http://dewy-blog.nikolazh.eu.org/2020-02-10-21-22-14.png)

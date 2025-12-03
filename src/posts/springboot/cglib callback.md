@@ -18,7 +18,7 @@ star: false
 
 我们可以看到Callback接口一共有7种实现.
 
-![2020-06-25-16-48-08](https://tech.nikolazhang.top/2020-06-25-16-48-08.png)
+![2020-06-25-16-48-08](http://dewy-blog.nikolazh.eu.org/2020-06-25-16-48-08.png)
 
 ## MethodInterceptor
 

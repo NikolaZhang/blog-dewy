@@ -28,7 +28,7 @@ star: false
 
 WebSocket是HTML5下一种新的协议。它实现了浏览器与服务器`全双工通信`，能更好的节省服务器资源和带宽并达到实时通讯的目的。
 
-![2020-04-04-17-16-06](https://tech.nikolazhang.top/2020-04-04-17-16-06.png)
+![2020-04-04-17-16-06](http://dewy-blog.nikolazh.eu.org/2020-04-04-17-16-06.png)
 
 ### 对比http
 

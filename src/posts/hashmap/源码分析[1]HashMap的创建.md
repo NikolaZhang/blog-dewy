@@ -19,7 +19,7 @@ star: false
 
 ## 简介
 
-![实现与继承关系](https://tech.nikolazhang.top/diagram.png)
+![实现与继承关系](http://dewy-blog.nikolazh.eu.org/diagram.png)
 
 HashMap 是基于哈希表的Map接口实现, 它了提供键值对的映射操作, 且键和值允许为空.
 HashMap 是线程不安全的而且每次操作哈希表后键值对, 存储位置可能发生变化. 因为hashmap在存值的过程中会进行扩容和数据结构转换(链表和树的转换).
@@ -85,7 +85,7 @@ n取值为0到MAXIMUM_CAPACITY, 则:
 3. 移位4后结果有8个高位为1, 移位8后结果有16个高位为1, 移位16后结果有32个高位为1.
 
 你可以参照下图进行理解:
-![解析移位运算](https://tech.nikolazhang.top/移位运算.png)
+![解析移位运算](http://dewy-blog.nikolazh.eu.org/移位运算.png)
 
 高位如此, 当初始的n低位中含有1时, 最终的结果必然是2的幂次减1.
 最后只需要将结果n加1就可以获得2的幂次结果了.

@@ -18,10 +18,10 @@ star: false
 
 文档在elasticsearch中是不可变的. 但是可以通过重建索引进行替换.
 
-![2020-02-01-20-17-00](https://tech.nikolazhang.top/2020-02-01-20-17-00.png)
+![2020-02-01-20-17-00](http://dewy-blog.nikolazh.eu.org/2020-02-01-20-17-00.png)
 
 如果我们要修改上面截图中的`age`字段, 可以将之前的PUT方法中的`age`值修改并重新运行, 即可.
-![2020-02-01-20-18-20](https://tech.nikolazhang.top/2020-02-01-20-18-20.png)
+![2020-02-01-20-18-20](http://dewy-blog.nikolazh.eu.org/2020-02-01-20-18-20.png)
 
 注意此时的_version字段会增加1, 这个设计如同数据库中我们使用乐观锁. 都是通过版本号实现.
 
@@ -29,7 +29,7 @@ star: false
 
 上面通过全文更新过于繁琐. 现在就介绍一种更加简单的方式进行更新.
 
-![2020-02-03-15-46-28](https://tech.nikolazhang.top/2020-02-03-15-46-28.png)
+![2020-02-03-15-46-28](http://dewy-blog.nikolazh.eu.org/2020-02-03-15-46-28.png)
 
 比如更改上面文档中的age:
 
@@ -43,7 +43,7 @@ POST /megacorp/employee/3/_update
 ```
 
 执行之后, 重新查询:
-![2020-02-03-15-48-23](https://tech.nikolazhang.top/2020-02-03-15-48-23.png)
+![2020-02-03-15-48-23](http://dewy-blog.nikolazh.eu.org/2020-02-03-15-48-23.png)
 结果已经变成我们设置的值了.
 
 #### 通过脚本更新
@@ -90,4 +90,4 @@ POST /megacorp/employee/1/_update?retry_on_conflict=5
 DELETE /school-demo/school/1
 ```
 
-![2020-02-01-20-51-52](https://tech.nikolazhang.top/2020-02-01-20-51-52.png)
+![2020-02-01-20-51-52](http://dewy-blog.nikolazh.eu.org/2020-02-01-20-51-52.png)

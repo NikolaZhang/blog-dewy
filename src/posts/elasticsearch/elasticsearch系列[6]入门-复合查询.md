@@ -35,7 +35,7 @@ star: false
 
 `minimum_should_match` 可以设置如下类型的值([官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-minimum-should-match.html)):
 
-![2020-02-03-21-23-40](https://tech.nikolazhang.top/2020-02-03-21-23-40.png)
+![2020-02-03-21-23-40](http://dewy-blog.nikolazh.eu.org/2020-02-03-21-23-40.png)
 
 ```json
 PUT /poem/_doc/1
@@ -80,7 +80,7 @@ GET /poem/_search
 }
 ```
 
-![2020-02-04-13-09-49](https://tech.nikolazhang.top/2020-02-04-13-09-49.png)
+![2020-02-04-13-09-49](http://dewy-blog.nikolazh.eu.org/2020-02-04-13-09-49.png)
 
 注意: 在处理百分比时，可以使用负值来获得边缘情况下的不同行为。在处理4个条款时，75%和-25%意味着同样的事情，但在处理5个条件时，75%表示需要3，而-25%表示需要4。
 无论计算到达哪个数，都不会使用大于可选子句数的值，或小于1的值。（即：无论计算结果的结果有多低或有多高，所需匹配的最小数目永远不会低于1或大于从句数。
@@ -90,7 +90,7 @@ GET /poem/_search
 返回匹配正查询的文档，同时减少匹配负查询的文档的相关性分数。
 使用Boosting Query来降级某些文档，而不将它们排除在搜索结果之外。
 
-![2020-02-04-13-40-59](https://tech.nikolazhang.top/2020-02-04-13-40-59.png)
+![2020-02-04-13-40-59](http://dewy-blog.nikolazh.eu.org/2020-02-04-13-40-59.png)
 
 参数介绍:
 
@@ -100,13 +100,13 @@ GET /poem/_search
 
 注意: 如果你设置值为大于1的, 不是不能运行, 此时的逻辑正好反过来了. 不过从语义上还是遵循既有规则, 设定区间为`0-1`.
 
-![2020-02-04-13-52-16](https://tech.nikolazhang.top/2020-02-04-13-52-16.png)
+![2020-02-04-13-52-16](http://dewy-blog.nikolazh.eu.org/2020-02-04-13-52-16.png)
 
 ## Constant score query
 
 包一个筛选器查询，并返回每个匹配文档的相关性分数等于Boost参数值.
 
-![2020-02-04-13-58-21](https://tech.nikolazhang.top/2020-02-04-13-58-21.png)
+![2020-02-04-13-58-21](http://dewy-blog.nikolazh.eu.org/2020-02-04-13-58-21.png)
 
 我们知道在过滤器上下文查询中. 结果不会返回分数, 常分数查询会直接返回匹配过滤器的文档一个给定的`boost`分数.
 
@@ -167,10 +167,10 @@ GET /dis_test/_search
 ```
 
 执行布尔查询结果:
-![2020-02-04-15-26-58](https://tech.nikolazhang.top/2020-02-04-15-26-58.png)
+![2020-02-04-15-26-58](http://dewy-blog.nikolazh.eu.org/2020-02-04-15-26-58.png)
 发现结果中最匹配的分数反而不高.
 执行dis_max查询:
-![2020-02-04-15-28-06](https://tech.nikolazhang.top/2020-02-04-15-28-06.png)
+![2020-02-04-15-28-06](http://dewy-blog.nikolazh.eu.org/2020-02-04-15-28-06.png)
 结果正确.
 
 bool计算评分的方式(这是权威文档上的, 7.5没有找到对应的原文, 有待考据):
@@ -248,7 +248,7 @@ GET /dis_test/_search
 `0.77041256 + 0 * 0.5 = 0.77041256`
 
 现在对比一下我们分析的结果和实际的结果. ok, 一切就明了了.
-![2020-02-04-19-23-54](https://tech.nikolazhang.top/2020-02-04-19-23-54.png)
+![2020-02-04-19-23-54](http://dewy-blog.nikolazh.eu.org/2020-02-04-19-23-54.png)
 
 ## Function score query
 
@@ -258,4 +258,4 @@ GET /dis_test/_search
 
 感觉可以放到之后的文章介绍.... 这一篇已经比较长了, 总之敬请期待
 
-![2020-02-04-19-32-49](https://tech.nikolazhang.top/2020-02-04-19-32-49.png)
+![2020-02-04-19-32-49](http://dewy-blog.nikolazh.eu.org/2020-02-04-19-32-49.png)
