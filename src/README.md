@@ -8,6 +8,9 @@ tagline: ( •̀ ω •́ )✧
 heroFullScreen: true
 bgImage: /wallhaven-1ky72w.jpg
 bgImageDark: /wallhaven-zxg9lw.png
+meta:
+  - name: algolia-site-verification
+    content: F9A01040E02C3F54
 projects:
   - icon: project
     name: be-kami
