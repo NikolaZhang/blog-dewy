@@ -217,12 +217,7 @@ public class TestSemaphore {
 
 运行上述代码后，输出类似于：
 
-```
-当前礼物数量为：1
-Thread-0 购买礼物成功
-Thread-0 剩余数量: 0
-剩余礼物: 0
-```
+![semaphore-use](http://dewy-blog.nikolazh.eu.org/1-semaphore-use.png)
 
 当只有一个礼物而多个线程同时尝试购买时，Semaphore确保了只有有限数量的线程可以同时尝试购买操作，但由于礼物数量有限（只有1个），最终只有一个线程能够成功购买。
 
