@@ -1,14 +1,22 @@
 ---
 title: Quartz与Spring Boot整合实战
-date: 2023-01-14 08:00:00
-categories:
-- guide
-- quartz
-tags:
-- Quartz
-- Spring Boot
-- 定时任务
-- 整合
+tag:
+  - Quartz
+  - Spring Boot
+  - 定时任务
+  - 整合
+category: Quartz
+description: Spring Boot作为目前最流行的Java企业级开发框架，提供了丰富的自动配置功能，简化了应用程序的开发和部署。Quartz作为功能强大的定时任务调度框架，与Spring Boot的整合可以让开发者更加便捷地实现复杂的定时任务需求。本文将详细介绍Quartz与Spring Boot的整合方式，包括自动配置原理、依赖设置、基本使用方法、高级特性（如动态任务管理、多数据源支持、事务处理等），以及最佳实践。
+date: 2023-01-14
+
+author: nikola
+icon: article
+
+isOriginal: false
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 ## 简介

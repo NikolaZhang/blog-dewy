@@ -1,13 +1,21 @@
 ---
 title: Quartz基本使用方法详解
-date: 2023-01-13 08:00:00
-categories:
-- guide
-- quartz
-tags:
-- Quartz
-- 定时任务
-- 使用方法
+tag:
+  - Quartz
+  - 定时任务
+  - 使用方法
+category: Quartz
+description: Quartz作为一个功能强大的Java定时任务调度框架，提供了丰富的API来创建和管理定时任务。本文将详细介绍Quartz的基本使用方法，包括核心API的使用、各种触发器的配置、任务数据传递、任务调度控制等内容。
+date: 2023-01-13
+
+author: nikola
+icon: article
+
+isOriginal: false
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 ## 简介

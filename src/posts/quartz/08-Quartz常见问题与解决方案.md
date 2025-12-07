@@ -1,13 +1,21 @@
 ---
 title: Quartz常见问题与解决方案
-date: 2023-01-16 08:00:00
-categories:
-- guide
-- quartz
-tags:
-- Quartz
-- 常见问题
-- 解决方案
+tag:
+  - Quartz
+  - 常见问题
+  - 解决方案
+category: Quartz
+description: 详细介绍Quartz的常见问题、原因分析和解决方案，并提供问题排查的通用方法，帮助开发者快速定位和解决问题
+date: 2023-01-16
+
+author: nikola
+icon: article
+
+isOriginal: false
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 ## 简介

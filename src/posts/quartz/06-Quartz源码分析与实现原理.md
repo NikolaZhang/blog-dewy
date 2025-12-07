@@ -1,13 +1,21 @@
 ---
 title: Quartz源码分析与实现原理
-date: 2023-01-17 08:00:00
-categories:
-- guide
-- quartz
-tags:
-- Quartz
-- 定时任务
-- 源码分析
+tag:
+  - Quartz
+  - 定时任务
+  - 源码分析
+category: Quartz
+description: 深入分析Quartz的核心源码，包括Scheduler实现、Job执行机制、Trigger触发逻辑、线程池实现和存储层设计
+date: 2023-01-17
+
+author: nikola
+icon: article
+
+isOriginal: false
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 ## 简介

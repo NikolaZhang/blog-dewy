@@ -1,14 +1,22 @@
 ---
 title: Quartz集群与分布式部署
-date: 2023-01-16 08:00:00
-categories:
-- guide
-- quartz
-tags:
-- Quartz
-- 定时任务
-- 集群
-- 分布式
+tag:
+  - Quartz
+  - 定时任务
+  - 集群
+  - 分布式
+category: Quartz
+description: 详细介绍Quartz集群的工作原理、配置方法、任务执行策略、分布式锁机制、监控管理以及常见问题解决方案
+date: 2023-01-16
+
+author: nikola
+icon: article
+
+isOriginal: false
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 ## 简介

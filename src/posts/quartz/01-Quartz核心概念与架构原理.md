@@ -1,13 +1,21 @@
 ---
 title: Quartz核心概念与架构原理
-date: 2023-01-12 08:00:00
-categories:
-- guide
-- quartz
-tags:
-- Quartz
-- 定时任务
-- 架构
+tag:
+  - Quartz
+  - 定时任务
+  - 架构
+category: Quartz
+description: 深入探讨Quartz的核心概念、架构设计、工作原理，并通过可视化图表展示其内部机制
+date: 2023-01-12
+
+author: nikola
+icon: article
+
+isOriginal: false
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 ## 简介

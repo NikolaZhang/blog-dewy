@@ -1,14 +1,21 @@
 ---
 title: Quartz动态任务管理
+tag:
+  - Quartz
+  - 定时任务
+  - 动态任务
+category: Quartz
+description: 在实际应用中，我们经常需要在运行时动态地管理定时任务，例如根据业务需求动态添加新任务、修改已有任务的执行时间、暂停或恢复任务、删除不再需要的任务等。Quartz框架提供了丰富的API来支持这些动态任务管理操作。本文将详细介绍如何使用Quartz实现动态任务管理。
+date: 2023-01-15
 
-date: 2023-01-15 08:00:00
-categories:
-- guide
-- quartz
-tags:
-- Quartz
-- 定时任务
-- 动态任务
+author: nikola
+icon: article
+
+isOriginal: false
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 ## 简介
