@@ -1,7 +1,7 @@
 ---
 title: 数据库 
 index: true
-icon: mysql
+icon: database
 category:
   - guide
 date: 2023-01-12
