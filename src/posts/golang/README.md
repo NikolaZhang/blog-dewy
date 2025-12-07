@@ -1,9 +1,9 @@
 ---
 title: golang语言学习 
 index: true
-icon: golang
+icon: otter
 category:
-  - guide
+  - golang
 date: 2023-01-12
 ---
 

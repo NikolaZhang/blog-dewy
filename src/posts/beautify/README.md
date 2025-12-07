@@ -1,7 +1,7 @@
 ---
 title: windows
 index: true
-icon: windows
+icon: microchip
 category:
   - guide
 date: 2023-01-12
