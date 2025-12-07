@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: ElasticSearch[4]操作篇-更新和删除
 tag:
@@ -7,6 +7,7 @@ tag:
 category: ElasticSearch
 description: 简单介绍一下elasticsearch文档的更新和删除
 date: 2020-02-03
+icon: search
 
 sticky: false
 timeline: true

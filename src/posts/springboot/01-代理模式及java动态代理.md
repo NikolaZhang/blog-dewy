@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: 代理模式及java动态代理
 tag:
@@ -7,6 +7,7 @@ tag:
   - 代理模式
 category: java
 date: 2020-06-13
+icon: coffee
 description: 从代理模式开始, 看看java动态代理是怎么回事
 sticky: false
 timeline: true

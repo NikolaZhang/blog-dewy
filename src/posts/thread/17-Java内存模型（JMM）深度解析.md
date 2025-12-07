@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: Java内存模型（JMM）深度解析
 tag:
@@ -10,6 +10,7 @@ tag:
   - 有序性
 category: thread
 date: 2024-01-20
+icon: coffee
 description: 深入解析Java内存模型的原理、特性和在并发编程中的应用
 sticky: false
 timeline: true

@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: cglib动态代理
 tag:
@@ -6,6 +6,7 @@ tag:
   - 动态代理
 category: cglib
 date: 2020-06-20
+icon: code
 description: 动态代理的第二篇文章, 讲讲cglib动态代理
 sticky: false
 timeline: true

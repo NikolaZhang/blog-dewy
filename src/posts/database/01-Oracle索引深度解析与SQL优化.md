@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: Oracle索引深度解析与SQL优化
 tag:
@@ -12,6 +12,8 @@ sticky: false
 timeline: true
 article: true
 star: false
+
+icon: code
 ---
 
 > 深入解析Oracle索引结构、类型、原理及其在SQL优化中的应用，包括B树索引、位图索引、函数索引等实现机制与优化策略

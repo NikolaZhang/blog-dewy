@@ -1,4 +1,4 @@
----
+﻿---
 title: linux top命令
 isOriginal: false
 tag:
@@ -8,6 +8,7 @@ tag:
 category: linux
 description: 在Linux中使用top命令
 date: 2021-05-28
+icon: linux
 
 sticky: false
 timeline: true

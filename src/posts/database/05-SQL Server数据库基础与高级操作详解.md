@@ -1,7 +1,8 @@
----
+﻿---
 isOriginal: true
 title: SQL Server数据库基础与高级操作详解
 date: 2018-11-13
+icon: code
 tag:
   - sql server
   - sql语法

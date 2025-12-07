@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: CompletableFuture与异步编程详解
 tag:
@@ -8,6 +8,7 @@ tag:
   - Future
 category: thread
 date: 2024-01-21
+icon: code-fork
 description: 深入解析CompletableFuture的实现原理、使用场景和异步编程技巧
 sticky: false
 timeline: true

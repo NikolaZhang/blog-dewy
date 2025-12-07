@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: ElasticSearch[6]操作篇-复合查询
 tag:
@@ -7,6 +7,7 @@ tag:
 category: ElasticSearch
 description: 简单介绍一下elasticsearch的查询
 date: 2020-02-04
+icon: search
 
 sticky: false
 timeline: true

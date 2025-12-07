@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: Java并发设计模式详解
 tag:
@@ -8,6 +8,7 @@ tag:
   - 线程安全单例
 category: thread
 date: 2024-01-18
+icon: coffee
 description: 详解Java并发设计模式的实现原理、使用场景和最佳实践
 sticky: false
 timeline: true

@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: Java线程的状态与锁机制深度解析
 tag:
@@ -8,6 +8,7 @@ tag:
   - 并发编程
 category: thread
 date: 2020-04-06
+icon: coffee
 description: 深入解析Java线程的状态转换和各种锁机制，包括线程状态、锁分类、实现原理和最佳实践
 sticky: false
 timeline: true

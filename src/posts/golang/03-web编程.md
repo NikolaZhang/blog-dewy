@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: web编程-gin框架[1]
 mathjax: true
@@ -8,6 +8,7 @@ tag:
   - gin
 category: go
 date: 2020-07-04
+icon: globe
 description: gin框架文档的学习
 
 sticky: false

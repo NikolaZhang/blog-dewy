@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: ElasticSearch[7]操作篇-Function score query
 tag:
@@ -7,6 +7,7 @@ tag:
 category: ElasticSearch
 description: Function score query的介绍
 date: 2020-02-05
+icon: search
 
 sticky: false
 timeline: true

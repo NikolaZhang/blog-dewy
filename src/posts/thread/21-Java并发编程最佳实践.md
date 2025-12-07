@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: Java并发编程最佳实践
 tag:
@@ -8,6 +8,7 @@ tag:
   - 线程安全
 category: thread
 date: 2024-01-24
+icon: coffee
 description: 详解Java并发编程的最佳实践、常见陷阱和解决方案
 sticky: false
 timeline: true

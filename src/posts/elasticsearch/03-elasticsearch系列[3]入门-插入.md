@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: ElasticSearch[3]操作篇-插入
 tag:
@@ -8,6 +8,7 @@ tag:
 category: ElasticSearch
 description: es文档的插入以及映射的介绍
 date: 2020-02-02
+icon: search
 
 sticky: false
 timeline: true

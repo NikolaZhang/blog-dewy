@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: Java死锁检测与调试实战
 tag:
@@ -8,6 +8,7 @@ tag:
   - 并发编程
 category: thread
 date: 2024-01-22
+icon: coffee
 description: 实战解析Java死锁的检测、调试和避免方法
 sticky: false
 timeline: true

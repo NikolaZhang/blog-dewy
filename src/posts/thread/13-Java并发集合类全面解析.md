@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: Java并发集合类全面解析
 tag:
@@ -7,6 +7,7 @@ tag:
   - ConcurrentHashMap
 category: thread
 date: 2024-01-16
+icon: coffee
 description: 全面解析Java并发集合类的实现原理、使用场景和性能特性
 sticky: false
 timeline: true

@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: cglib回调器
 tag:
@@ -7,6 +7,7 @@ tag:
   - 回调
 category: cglib
 date: 2020-06-21
+icon: code
 description: cglib的回调器类型及使用方法
 sticky: false
 timeline: true

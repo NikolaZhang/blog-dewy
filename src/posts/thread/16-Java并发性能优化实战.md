@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: Java并发性能优化实战
 tag:
@@ -8,6 +8,7 @@ tag:
   - 锁优化
 category: thread
 date: 2024-01-19
+icon: coffee
 description: 实战解析Java并发性能优化的技术、策略和最佳实践
 sticky: false
 timeline: true

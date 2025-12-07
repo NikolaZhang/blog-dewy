@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: false
 title: Java线程安全与volatile深度解析
 tag:
@@ -11,6 +11,7 @@ tag:
   - 伪共享
 category: thread
 date: 2023-12-20
+icon: coffee
 description: 深入解析Java线程安全、volatile关键字底层原理、Java内存模型、缓存一致性协议(MESI)以及伪共享等高级并发编程概念
 sticky: false
 timeline: true

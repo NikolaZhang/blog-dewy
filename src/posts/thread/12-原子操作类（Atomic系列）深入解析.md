@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: 原子操作类（Atomic系列）深入解析
 tag:
@@ -7,6 +7,7 @@ tag:
   - 并发编程
 category: thread
 date: 2024-01-15
+icon: coffee
 description: 深入解析Java原子操作类的实现原理，包括CAS机制、Unsafe类的使用、ABA问题及解决方案
 sticky: false
 timeline: true

@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: ElasticSearch[1]部署
 tag:
@@ -7,6 +7,7 @@ tag:
 category: ElasticSearch
 description: elasticsearch 的使用部署篇
 date: 2020-01-31
+icon: search
 
 sticky: false
 timeline: true

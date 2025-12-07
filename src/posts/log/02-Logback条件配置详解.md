@@ -1,7 +1,8 @@
----
+﻿---
 isOriginal: true
 title: Logback条件配置详解
 date: 2022-10-17
+icon: file-alt
 tag:
   - logback
   - 日志框架

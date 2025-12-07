@@ -1,7 +1,8 @@
----
+﻿---
 isOriginal: true
 title: jenkins部署相关
 date: 2020-04-02
+icon: cog
 tag:
   - jenkins
   - 部署

@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: springboot 源码分析[1] new SpringApplication
 tag:
@@ -6,6 +6,7 @@ tag:
   - SpringApplication
 category: 源码
 date: 2020-05-04
+icon: leaf
 description: springboot源码分析
 sticky: false
 timeline: true

@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: CyclicBarrier与Phaser线程协作工具深入解析
 tag:
@@ -8,6 +8,7 @@ tag:
   - 线程协作
 category: thread
 date: 2024-01-17
+icon: code-fork
 description: 深入解析CyclicBarrier和Phaser的实现原理、使用场景和高级特性
 sticky: false
 timeline: true

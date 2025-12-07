@@ -1,7 +1,8 @@
----
+﻿---
 isOriginal: true
 title: 服务容错保护 Spring Cloud Resilience4J [1]
 date: 2018-12-16
+icon: code
 update: 2024-01-01
 
 

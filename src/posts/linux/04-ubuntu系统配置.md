@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: 安装一个新的ubuntu系统后应该要做的事
 tag:
@@ -7,6 +7,7 @@ tag:
 category: linux
 description: 简单记录一下如何让新的系统更适合自己的开发环境, 以后有什么需要直接按照这篇文章搞
 date: 2020-01-31
+icon: code
 sticky: false
 timeline: true
 article: true

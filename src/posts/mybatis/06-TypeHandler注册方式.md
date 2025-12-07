@@ -1,7 +1,8 @@
----
+﻿---
 isOriginal: true
 title: TypeHandler注册方式
 date: 2021-03-03
+icon: code
 tag:
   - mybatis
   - configuration

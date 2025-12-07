@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: ElasticSearch[8]操作篇-springboot连接es
 tag:
@@ -7,6 +7,7 @@ tag:
 category: ElasticSearch
 description: 如何通过springboot操作es
 date: 2020-02-10
+icon: search
 
 sticky: false
 timeline: true

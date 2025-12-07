@@ -1,7 +1,8 @@
----
+﻿---
 isOriginal: true
 title: '服务容错 Resilience4J [2]'
 date: 2018-12-22
+icon: code
 tag:
   - resilience4j
 category: 技术

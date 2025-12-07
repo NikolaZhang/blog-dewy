@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: false
 title: BlockingQueue队列深入解析
 tag:
@@ -7,6 +7,7 @@ tag:
   - 并发编程
 category: thread
 date: 2025-12-03
+icon: coffee
 description: 深入解析Java 8中BlockingQueue接口及其实现类的原理、使用方法和适用场景，并通过实际案例展示如何在并发编程中正确使用这些队列
 sticky: false
 timeline: true

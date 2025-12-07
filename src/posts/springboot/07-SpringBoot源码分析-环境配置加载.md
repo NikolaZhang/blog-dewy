@@ -1,4 +1,4 @@
----
+﻿---
 isOriginal: true
 title: springboot源码分析[3]环境配置加载
 tag:
@@ -6,6 +6,7 @@ tag:
   - Environment
 category: 源码
 date: 2020-05-06
+icon: leaf
 description: springboot源码分析
 sticky: false
 timeline: true
