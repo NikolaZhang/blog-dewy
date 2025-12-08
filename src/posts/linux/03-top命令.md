@@ -127,7 +127,7 @@ MiB Swap:      0.0 total,      0.0 free,      0.0 used.    744.4 avail Mem
 
 进入top命令后, 按?可以查看帮助:
 
-```
+```plaintext
 Help for Interactive Commands - procps-ng UNKNOWN
 Window 1:Def: Cumulative mode Off.  System: Delay 3.0 secs; Secure mode Off.
 
