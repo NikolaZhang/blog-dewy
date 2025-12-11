@@ -55,6 +55,10 @@ export const zhNavbar = navbar([
                 text: "番剧",
                 link: "bangumis/"
             },
+            {
+                text: "工作学习",
+                link: "work/"
+            },
         ]
     },
     {
