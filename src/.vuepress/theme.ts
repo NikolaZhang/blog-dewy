@@ -5,7 +5,7 @@ import {zhSidebar} from "./sidebar";
 export default hopeTheme({
     hostname: "https://nikolazhang.github.io",
     author: {
-        name: "我小叮当、",
+        name: "DewyYr、",
         url: "https://nikolazhang.github.io",
     },
     logo: "/head.svg",
@@ -13,7 +13,7 @@ export default hopeTheme({
     docsDir: "docs",
     pageInfo: ["Date", "Tag", "ReadingTime"],
     blog: {
-        name: "我小叮当、",
+        name: "DewyYr、",
         avatar: "/head.svg",
         description: "全人类的幻想乡",
         timeline: "朝花夕拾",

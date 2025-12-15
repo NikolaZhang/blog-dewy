@@ -1,7 +1,7 @@
 ---
 title: 工具
 index: true
-icon: setting
+icon: wrench
 category:
   - guide
 date: 2023-01-12

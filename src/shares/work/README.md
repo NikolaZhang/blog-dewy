@@ -1,7 +1,7 @@
 ---
-title: 番剧
+title: 参考资料
 index: true
-icon: like
+icon: heart
 category:
   - guide
 date: 2023-01-12

@@ -2,7 +2,7 @@
 home: true
 layout: Blog
 icon: home
-title: 我小叮当、
+title: DewyYr、
 heroText: 全人类的幻想乡
 tagline: ( •̀ ω •́ )✧
 heroFullScreen: true
@@ -43,5 +43,5 @@ projects:
     desc: 填充模板数据的vscode插件
     link: https://gitee.com/NikolaZhang/templates-tools
 
-footer: nikola | 鲁ICP备20000559号-1
+footer: DewyYr、 | 鲁ICP备20000559号-1
 ---

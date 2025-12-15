@@ -88,5 +88,10 @@ export const zhNavbar = navbar([
                 link: "https://webstatic.mihoyo.com/ys/app/interactive-map/index.html"
             },
         ]
+    },
+    {
+        text: "小说",
+        icon: "book",
+        link: "/story/",
     }
 ]);
