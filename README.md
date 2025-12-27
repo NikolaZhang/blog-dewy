@@ -5,7 +5,7 @@
 使用vuepress-theme-hope主题，创建的静态博客站点。
 该博客主要用来记录自己的学习过程，分享自己的经验，也欢迎大家来交流学习。
 
-访问地址：[https://nikolazhang.github.io/](https://nikolazhang.github.io/)
+访问地址：[https://blog.nikolazh.eu.org/](https://blog.nikolazh.eu.org/)
 
 ## 关于主题
 

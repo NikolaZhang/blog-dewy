@@ -3,13 +3,13 @@ import {zhNavbar} from "./navbar";
 import {zhSidebar} from "./sidebar";
 
 export default hopeTheme({
-    hostname: "https://nikolazhang.github.io",
+    hostname: "https://blog.nikolazh.eu.org",
     author: {
         name: "DewyYr、",
-        url: "https://nikolazhang.github.io",
+        url: "https://blog.nikolazh.eu.org",
     },
     logo: "/head.svg",
-    repo: "https://github.com/NikolaZhang/nikolazhang.github.io",
+    repo: "https://github.com/NikolaZhang/dew-blog",
     docsDir: "docs",
     pageInfo: ["Date", "Tag", "ReadingTime"],
     blog: {
