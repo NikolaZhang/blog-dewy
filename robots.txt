@@ -1,4 +1,4 @@
 User-agent:*
 Disallow:
 
-Sitemap: https://nikolazhang.github.io/sitemap.xml
+Sitemap: https://blog.nikolazh.eu.org/sitemap.xml
