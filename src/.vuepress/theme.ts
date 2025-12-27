@@ -66,7 +66,7 @@ export default hopeTheme({
         },
         docsearch: {
             appId: 'LPNQHO03XM',
-            apiKey: '69aec575fa0d1e47d7b3b5a07ba2517b',
+            apiKey: '90389db7ce1ca91a6e8f4b6a2e3a2248',
             indexName: 'blog_nikolazh_eu_org_lpnqho03xm_articles',
         },
         // search: true,
