@@ -6,8 +6,8 @@ title: DewyYr、
 heroText: 全人类的幻想乡
 tagline: ( •̀ ω •́ )✧
 heroFullScreen: true
-bgImage: http://dewy-blog.nikolazh.eu.org/wallhaven-1ky72w.jpg
-bgImageDark: http://dewy-blog.nikolazh.eu.org/wallhaven-zxg9lw.png
+bgImage: http://dewy-blog.nikolazh.eu.org/wallhaven-1ky72w.jpg?imageslim/zlevel/5
+bgImageDark: http://dewy-blog.nikolazh.eu.org/wallhaven-zxg9lw.png?imageslim/zlevel/5
 head:
   - - meta
     - name: algolia-site-verification
