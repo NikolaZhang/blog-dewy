@@ -21,3 +21,5 @@ date: 2023-01-12
 - [Spring Boot Bean生命周期详解](12-SpringBootBean生命周期详解.md)
 - [Spring AOP实现原理深度解析](13-SpringAOP实现原理深度解析.md)
 - [Spring Bean前置处理与后置处理接口详解](14-SpringBean前置处理与后置处理接口详解.md)
+- [Spring Boot 整合 RabbitMQ 详解](15-SpringBoot整合RabbitMQ详解.md)
+- [Spring三级缓存解决循环依赖原理](16-Spring三级缓存解决循环依赖原理.md)
